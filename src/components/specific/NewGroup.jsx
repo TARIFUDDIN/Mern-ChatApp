@@ -3,7 +3,6 @@ import {
   Button,
   Dialog,
   DialogTitle,
-  Skeleton,
   Stack,
   TextField,
   Typography,
@@ -24,6 +23,7 @@ const [members,setMembers]=useState(sampleUsers);
         : [...prev, id]
     );
   };
+  
   const submitHandler = () => {
   };
 
@@ -31,7 +31,7 @@ const [members,setMembers]=useState(sampleUsers);
   };
 
   return (
-    <Dialog open>
+    <Dialog open onClose={closeHandler}>
       <Stack p={{ xs: "1rem", sm: "3rem" }} width={"25rem"} spacing={"2rem"}>
         <DialogTitle textAlign={"center"} variant="h4">
           New Group

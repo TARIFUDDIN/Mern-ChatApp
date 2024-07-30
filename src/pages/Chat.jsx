@@ -1,5 +1,6 @@
 import React, {
   
+  Fragment,
   useRef
 
 } from "react";
@@ -10,7 +11,7 @@ import {
   Send as SendIcon,
 } from "@mui/icons-material";
 import { InputBox } from "../components/styles/StyledComponents";
-
+import FileMenu from "../components/dialogs/FileMenu";
 import { sampleMessage } from '../constants/sampleData';
 import MessageComponent from '../components/shared/MessageComponent';
 import { grayColor, orange } from "../constants/color";
@@ -21,18 +22,19 @@ const user={
 
 const Chat = () => {
   const containerRef = useRef(null);
+ 
   const submitHandler = (e) => {
     e.preventDefault();
   };
   return (
-  <>
+  <Fragment>
   <Stack
           ref={containerRef}
         boxSizing={"border-box"}
         padding={"1rem"}
         spacing={"1rem"}
         bgcolor={grayColor}
-        height={"90%"}
+        height={"90vh"}
         sx={{
           overflowX: "hidden",
           overflowY: "auto",
@@ -45,7 +47,7 @@ const Chat = () => {
       
       <form
         style={{
-          height: "10%",
+          height: "10vh",
         }}
         onSubmit={submitHandler}
       >
@@ -60,7 +62,9 @@ const Chat = () => {
       position:"absolute",
       left:"1.5rem",
       rotate:"30deg",
-    }}>
+    }}
+ 
+    >
       <AttachFileIcon/>
     </IconButton>
     <InputBox 
@@ -83,7 +87,8 @@ const Chat = () => {
     </IconButton>
   </Stack>
   </form>
-  </>
+  <FileMenu/>
+  </Fragment>
   );
 };
 

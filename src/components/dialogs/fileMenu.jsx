@@ -1,6 +1,6 @@
 import React from 'react'
-
-const fileMenu = ({anchorE1}) => {
+import { Menu } from "@mui/material";
+const FileMenu = ({anchorE1}) => {
   return (
     <Menu  anchorE1={anchorE1} open={false}>
     <div
@@ -13,4 +13,4 @@ const fileMenu = ({anchorE1}) => {
   );
 };
 
-export default fileMenu;
+export default FileMenu;

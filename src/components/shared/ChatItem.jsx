@@ -36,18 +36,20 @@ const ChatItem = ({
       </Stack>
 
 
-      {
-        isOnline && <Box sx={{
-      width:"10px",
-      height:"10px",
-      borderRaduis:"50%",
-      position:"absolute",
-      top:"50%",
-      right:"1rem",
-      transform:"translative(_50%)",
-      
-        }}/>
-      }
+      {isOnline && (
+          <Box
+            sx={{
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%",
+              backgroundColor: "green",
+              position: "absolute",
+              top: "50%",
+              right: "1rem",
+              transform: "translateY(-50%)",
+            }}
+          />
+        )}
     </div>
     </Link>
   );

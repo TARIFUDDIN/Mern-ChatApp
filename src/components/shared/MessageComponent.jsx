@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import {Box, Typography } from '@mui/material';
 import React,{memo} from 'react';
 import { lightBlue } from '../../constants/color';
 import moment from 'moment';
@@ -17,7 +17,7 @@ const MessageComponent = ({message,user}) => {
         color:"black",
         borderRadius:"5px",
         padding:"0.5rem",
-        width:"fit-content"
+        width:"fit-content",
 
     }}
     >
