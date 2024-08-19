@@ -4,16 +4,16 @@ import React, {
   useRef
 
 } from "react";
-import AppLayout from '../components/layout/AppLayout';
+import AppLayout from '../components/layout/AppLayout.jsx';
 import { IconButton, Stack } from '@mui/material';
 import {
   AttachFile as AttachFileIcon,
   Send as SendIcon,
 } from "@mui/icons-material";
-import { InputBox } from "../components/styles/StyledComponents";
-import FileMenu from "../components/dialogs/FileMenu";
-import { sampleMessage } from '../constants/sampleData';
-import MessageComponent from '../components/shared/MessageComponent';
+import { InputBox } from "../components/styles/StyledComponents.jsx";
+import FileMenu from "../components/dialogs/FileMenu.jsx";
+import { sampleMessage } from '../constants/sampleData.jsx';
+import MessageComponent from "../components/shared/MessageComponent.jsx";
 import { grayColor, orange } from "../constants/color";
 const user={
   _id:"ghmjḥghb",

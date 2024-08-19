@@ -28,7 +28,6 @@ import {
 } from "@mui/icons-material";
 
 import AvatarCard from "../components/shared/AvatarCard";
-import userItem from "../components/shared/userItem";
 
 import { samepleChats, sampleUsers } from "../constants/sampleData";
 const ConfirmDeleteDialog = lazy(() =>
