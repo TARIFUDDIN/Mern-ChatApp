@@ -10,21 +10,13 @@ import {
 } from "@mui/material";
 import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAsyncMutation, useErrors } from "../../hooks/hook";
-import {
-  useAcceptFriendRequestMutation,
-  useGetNotificationsQuery,
-} from "../../redux/api/api";
-import { setIsNotification } from "../../redux/reducers/misc";
+
+
 
 const Notifications = () => {
   const { isNotification } = useSelector((state) => state.misc);
 
-  const dispatch = useDispatch();
 
-  const { isLoading, data, error, isError } = useGetNotificationsQuery();
-
-  const [acceptRequest] = useAsyncMutation(useAcceptFriendRequestMutation);
 
   const friendRequestHandler = async ({ _id, accept }) => {
     dispatch(setIsNotification(false));

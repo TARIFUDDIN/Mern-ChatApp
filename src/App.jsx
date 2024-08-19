@@ -1,6 +1,6 @@
 import {React,Suspense,lazy} from "react";
 import {BrowserRouter,Routes,Route} from"react-router-dom";
-import ProtectRoute from "./components/auth/ProtectRoute";
+
 import {LayoutLoader} from "./components/layout/Loaders";
 
 const Home=lazy(()=>import ("./pages/Home"));
@@ -24,11 +24,7 @@ return (
   <Suspense fallback={<LayoutLoader/>}>
   <Routes>
           <Route
-            element={
-              
-                <ProtectRoute user={user} />
-              
-            }
+            
           >
             <Route path="/" element={<Home />} />
             <Route path="/chat/:chatId" element={<Chat />} />
@@ -38,9 +34,9 @@ return (
           <Route
             path="/login"
             element={
-              <ProtectRoute user={!user} redirect="/">
+              
                 <Login />
-              </ProtectRoute>
+             
             }
           />
                     <Route path="/admin" element={<AdminLogin />} />
@@ -49,7 +45,7 @@ return (
           <Route path="/admin/chats" element={<ChatManagement />} />
           <Route path="/admin/messages" element={<MessagesManagement />} />
 
-          <Route path="*" element={<NotFound/>}/>
+          <Route path="/notfound" element={<NotFound/>}/>
   </Routes>
   </Suspense>
 </BrowserRouter>
