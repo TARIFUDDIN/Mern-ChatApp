@@ -11,7 +11,10 @@ import { useInputValidation } from "6pp";
 import React, { useState } from "react";
 import { sampleUsers } from "../../constants/sampleData";
 import UserItem from "../shared/userItem";
+import { useDispatch, useSelector } from "react-redux";
 const NewGroup = () => {
+  const dispatch=useDispatch();
+  const {isNewgroup}=useSelector((state)=>state.misc);
   const groupName = useInputValidation("");
 const [members,setMembers]=useState(sampleUsers);
   const [selectedMembers, setSelectedMembers] = useState([]);

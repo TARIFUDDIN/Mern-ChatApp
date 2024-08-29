@@ -1,20 +1,29 @@
-import { Avatar, IconButton, ListItem, Stack, Typography } from '@mui/material';
-import React,{memo} from'react';
 import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
-const userItem=(user,handler,handlerIsLoading,isAdded=false,styling={})=>{
-    const {name,_id,avatar}=user
-return (
-    <ListItem
-    >
-        <Stack 
+import { Avatar, IconButton, ListItem, Stack, Typography } from "@mui/material";
+import React, { memo } from "react";
+import { transformImage } from "../../lib/feature";
+
+const UserItem = ({
+  user,
+  handler,
+  handlerIsLoading,
+  isAdded = false,
+  styling = {},
+}) => {
+  const { name, _id, avatar } = user;
+
+  return (
+    <ListItem>
+      <Stack
         direction={"row"}
         alignItems={"center"}
         spacing={"1rem"}
         width={"100%"}
         {...styling}
-        >
-            <Avatar/>
-            <Typography
+      >
+        <Avatar src={transformImage(avatar)} />
+
+        <Typography
           variant="body1"
           sx={{
             flexGlow: 1,
@@ -24,29 +33,28 @@ return (
             overflow: "hidden",
             textOverflow: "ellipsis",
             width: "100%",
-            
           }}
         >
           {name}
         </Typography>
 
-            <IconButton   size="small"  
-            sx={{
-              bgcolor:isAdded?"error.main":"primary.main",
-              color:"white",
-              "&hover":{
-                bgcolor:isAdded?"error.dark":"primary.dark",
-              },
-            }} 
-             onClick={() => handler(_id)}
-          disabled={handlerIsLoading}>
-          {
-            isAdded? <RemoveIcon/>:<AddIcon/>
-          }
-            
-            </IconButton>
-        </Stack>
+        <IconButton
+          size="small"
+          sx={{
+            bgcolor: isAdded ? "error.main" : "primary.main",
+            color: "white",
+            "&:hover": {
+              bgcolor: isAdded ? "error.dark" : "primary.dark",
+            },
+          }}
+          onClick={() => handler(_id)}
+          disabled={handlerIsLoading}
+        >
+          {isAdded ? <RemoveIcon /> : <AddIcon />}
+        </IconButton>
+      </Stack>
     </ListItem>
-)
+  );
 };
-export default memo(userItem);
+
+export default memo(UserItem);

@@ -2,9 +2,15 @@ import { Button, Container, IconButton, Paper, TextField, Typography,Stack, Avat
 import { VisuallyHiddenInput } from "../components/styles/StyledComponents";
 import {  useFileHandler, useInputValidation } from "6pp";
 import { usernameValidator } from '../utils/validator';
-import React, { useState } from 'react'
+import { useDispatch } from "react-redux";
 import { bgGradient } from "../constants/color";
+import { server } from "../constants/config";
 import { CameraAlt as CameraAltIcon } from "@mui/icons-material";
+import axios from "axios";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { userExists } from '../redux/reducers/auth';
+
 const Login = () => {
     const [isLogin,setIsLogin]=useState(true);
     const [isLoading, setIsLoading] = useState(false);
@@ -13,12 +19,70 @@ const Login = () => {
     const bio = useInputValidation("");
     const username = useInputValidation("",usernameValidator);
     const password = useInputValidation("");
+    const dispatch = useDispatch();
   const  avatar=useFileHandler("single");
-  const handelLogin=(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
+
+   // const toastId = toast.loading("Logging In...");
+
+    //setIsLoading(true);
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const { data } = await axios.post(
+        `${server}/user/login`,
+        {
+          username: username.value,
+          password: password.value,
+        },
+        config
+      );
+      dispatch(userExists(true));
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Something Went Wrong");
+       
+    } 
   };
-  const handelSignUp=(e)=>{
+
+
+  const handelSignUp=async(e)=>{
     e.preventDefault();
+
+    //const toastId = toast.loading("Signing Up...");
+    //setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append("avatar", avatar.file);
+    formData.append("name", name.value);
+    formData.append("bio", bio.value);
+    formData.append("username", username.value);
+    formData.append("password", password.value);
+
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      const { data } = await axios.post(
+        `${server}/user/new`,
+        formData,
+        config
+      );
+
+      dispatch(userExists(true));
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Something Went Wrong")};
+       
   };
   return (
     <div
@@ -96,11 +160,6 @@ fullWidth
                 >
                   Sign Up Instead
                 </Button>
-
-
-
-
-
         </form>
     </>
 
@@ -111,7 +170,7 @@ fullWidth
                   width: "100%",
                   marginTop: "1rem",
                 }}
-                onSubmit={handelLogin}
+                onSubmit={handleLogin }
               >
                 <Stack position={"relative"} width={"10rem"} margin={"auto"}>
                   <Avatar

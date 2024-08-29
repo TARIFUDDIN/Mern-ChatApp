@@ -11,10 +11,11 @@ import {
   Send as SendIcon,
 } from "@mui/icons-material";
 import { InputBox } from "../components/styles/StyledComponents.jsx";
-import FileMenu from "../components/dialogs/FileMenu.jsx";
-import { sampleMessage } from '../constants/sampleData.jsx';
+import FileMenu from "../components/dialogs/FileMenu";
+
 import MessageComponent from "../components/shared/MessageComponent.jsx";
 import { grayColor, orange } from "../constants/color";
+import { sampleMessage } from "../constants/sampleData.js";
 const user={
   _id:"ghmjḥghb",
   name:"Syed Tarif Ahmed"
